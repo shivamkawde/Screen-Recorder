@@ -10,7 +10,7 @@ var display = {
     video: {
         cursor: 'always'
     },
-    //audio: true
+    Audio: true
 }
 
 
