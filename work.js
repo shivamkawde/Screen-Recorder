@@ -1,23 +1,31 @@
 let video = document.querySelector("#video");
 let stop = document.querySelector("#stop");
 let start = document.querySelector("#start");
-// let startR = document.querySelector("#startR");
-// let stopR = document.querySelector("#stopR");
 
 let chunks = [];
 
 var display = {
     video: {
-        cursor: 'always'
+        cursor: "always"
     },
-    Audio: true
+    audio: false
 }
 
 
 
-start.addEventListener("click", function (e) {
-    startCap()
-    startRecording()
+start.addEventListener("click", async function (e) {
+
+    try {
+        stream = await navigator.mediaDevices.getDisplayMedia(display);
+        //  chunks.push(video.srcObject);
+        startRecording(stream)
+        video.srcObject = stream
+    }
+    catch (err) {
+        console.log('error');
+    }
+    //startCap()
+
 })
 
 
@@ -26,16 +34,6 @@ stop.addEventListener("click", function (e) {
 
 })
 
-async function startCap(e) {
-    try {
-        video.srcObject = await navigator.mediaDevices.getDisplayMedia(display);
-        //  chunks.push(video.srcObject);
-
-    }
-    catch (err) {
-        console.log('error');
-    }
-}
 
 
 
@@ -48,7 +46,10 @@ function stopCap(e) {
 
 
 async function startRecording() {
-    stream = await navigator.mediaDevices.getDisplayMedia(display);
+    // stream = await navigator.mediaDevices.getDisplayMedia({
+    //     video: true,
+    //     audio:false
+    // });
     let recorder = new MediaRecorder(stream);
 
 
@@ -57,7 +58,7 @@ async function startRecording() {
     const chunks = [];
     recorder.ondataavailable = e => chunks.push(e.data);
     recorder.onstop = e => {
-        const blob = new Blob(chunks, { type: chunks[0].type });
+        const blob = new Blob(chunks, { type: "video/mp4" });
         console.log(blob);
         stream.getVideoTracks()[0].stop();
 
