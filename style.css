@@ -1,0 +1,15 @@
+#video{
+    width: 80%;
+    /* border: black solid 2px; */
+    height: 90%; 
+   
+}
+
+body
+{
+    background-color:#101217
+}
+
+#start{
+    background-color: aliceblue;
+}
