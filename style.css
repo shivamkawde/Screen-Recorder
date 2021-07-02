@@ -1,7 +1,8 @@
 #video{
     width: 80%;
-    /* border: black solid 2px; */
+
     height: 90%; 
+    max-width: 800px;
    
 }
 
