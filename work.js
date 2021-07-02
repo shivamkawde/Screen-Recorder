@@ -1,8 +1,8 @@
 let video = document.querySelector("#video");
 let stop = document.querySelector("#stop");
 let start = document.querySelector("#start");
-let startR = document.querySelector("#startR");
-let stopR = document.querySelector("#stopR");
+// let startR = document.querySelector("#startR");
+// let stopR = document.querySelector("#stopR");
 
 let chunks = [];
 
@@ -10,7 +10,7 @@ var display = {
     video: {
         cursor: 'always'
     },
-    audio: true
+    //audio: true
 }
 
 
@@ -48,10 +48,7 @@ function stopCap(e) {
 
 
 async function startRecording() {
-    stream = await navigator.mediaDevices.getDisplayMedia({
-        video: true,
-        audio: true
-    });
+    stream = await navigator.mediaDevices.getDisplayMedia(display);
     let recorder = new MediaRecorder(stream);
 
 
